@@ -1,1 +1,21 @@
-# use here COPY 1_12 .
+FROM ubuntu:24.04
+
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_16.x | bash && \
+    apt-get install -y nodejs
+
+WORKDIR /usr/src/app
+
+ENV PORT=5001
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+
+COPY 1_12/ .
+
+RUN npm install && \
+    npm run build && \
+    npm install -g serve && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+EXPOSE $PORT
+
+CMD ["serve", "-s", "-l", "5001", "build"]

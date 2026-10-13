@@ -1,1 +1,16 @@
-# use here COPY 1_13 .
+FROM golang:1.16
+
+WORKDIR /usr/src/app
+
+COPY 1_13/ .
+
+ENV PORT=8080
+ENV REQUEST_ORIGIN=https://example.com
+
+RUN go test ./... && \
+    go build -o server
+
+EXPOSE $PORT
+
+CMD ["./server"]
+
