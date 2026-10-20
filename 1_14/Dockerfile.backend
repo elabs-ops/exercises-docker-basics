@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY 1_13/ .
 
 ENV PORT=8080
-ENV REQUEST_ORIGIN=https://example.com
+ENV REQUEST_ORIGIN=http://localhost:5001
 
 RUN go test ./... && \
     go build -o server
