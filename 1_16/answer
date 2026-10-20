@@ -1,0 +1,9 @@
+Deployment steps on Render.com:
+- The application was containerized using a Dockerfile, built locally, and pushed to my Docker Hub repository.
+- I created a new Web Service on Render by choosing the option to deploy from an existing image registry.
+- Render was pointed directly to my Docker Hub image URL so it could fetch the pre-built container without needing the source code.
+- The infrastructure was configured on the Free Tier, allowing Render to automatically manage the network routing and generate a public URL.
+- The backend now runs as a standalone HTTP server, making endpoints like /metrics directly accessible via a web browser or curl without requiring a frontend interface.
+
+Server access link : 
+https://metrics-backend-pf9d.onrender.com/metrics
